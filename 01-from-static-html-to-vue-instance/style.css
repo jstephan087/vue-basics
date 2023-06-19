@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  font-weight: 400;
+}
+
+main {
+  margin: 2rem auto;
+}
+
+div {
+  width: 70ch;
+  padding: 1rem 1.25rem;
+  -webkit-box-shadow: 3px 3px 7px 0px rgba(129, 129, 129, 0.4);
+  box-shadow: 3px 3px 7px 0px rgba(129, 129, 129, 0.4);
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #6a1cc3;
+  margin: 0.5rem 0 2rem;
+}
+
+p {
+  margin: 0.45rem 0;
+}
+
+p:last-child {
+  margin-bottom: 1rem;
+}
