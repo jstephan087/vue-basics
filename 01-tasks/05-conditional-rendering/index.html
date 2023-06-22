@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task - Attribute Binding</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="header">
+    <section class="header__section">
+      <p class="header__task-name">💻 Coding Task</p>
+      <p class="header__bootcamp-info-wrapper">
+        <span class="header__bootcamp-modul"><strong>Modul:</strong> Web Apps with Vue.js - Part 1</span>
+        <a href="https://www.coding-bootcamps.eu/" class="header__bootcamp-link">coding-bootcamps.eu</a>
+      </p>
+    </section>
+  </header>
+  <main>
+    <div id="app" class="inside">
+      <div class="tab-box">
+        <nav class="tab-box__nav">
+          <button @click="activeTab = 1" class="tab-box__nav-item"
+            :class="{ 'tab-box__nav-item--active': activeTab === 1 }">
+            Tab 1
+          </button>
+          <button @click="activeTab = 2" class="tab-box__nav-item"
+            :class="{ 'tab-box__nav-item--active': activeTab === 2 }">
+            Tab 2
+          </button>
+          <button @click="activeTab = 3" class="tab-box__nav-item"
+            :class="{ 'tab-box__nav-item--active': activeTab === 3 }">
+            Tab 3
+          </button>
+        </nav>
+        <div class="tab-box__content tab-box tab-box__content--active">
+          <section v-if="activeTab === 1" class="tab-box__content-item">Content 1</section>
+          <section v-else-if="activeTab === 2" class="tab-box__content-item">Content 2</section>
+          <section v-else-if="activeTab === 3" class="tab-box__content-item">Content 3</section>
+          <section v-else>Sorry, no matching tab was found</section>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="scripts.js"></script>
+</body>
+
+</html>
