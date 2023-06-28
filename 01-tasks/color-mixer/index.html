@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Color Mixer</title>
+</head>
+
+<body>
+    <header id="app">
+        <div v-for="(colorInput, key) in color" :key="key">
+            <label :for="key">{{key.charAt(0)}}</label>
+            <input type="range" step="1" min="0" max="255" :id="key" :value="colorInput"
+                @input="updateColor($event, key)">
+        </div>
+        <label id="color-value">{{textLabel}}</label>
+        <button @click="getData">Random Color</button>
+    </header>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
