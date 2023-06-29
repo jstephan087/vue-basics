@@ -19,6 +19,13 @@ Vue.createApp({
     },
   },
   methods: {
+    loadData() {
+      fetch("http://localhost:4730/todos")
+        .then((response) => response.json())
+        .then((todosFromApi) => {
+          this.todos = todosFromApi;
+        });
+    },
     checkboxStatus(event, index) {
       this.todos[index].done = event.target.checked;
       this.updateData(this.todos[index]);
@@ -79,16 +86,12 @@ Vue.createApp({
         );
       });
       Promise.all(deleteArray).then(() => {
-        location.reload();
+        this.loadData();
       });
     },
   },
   async created() {
-    fetch("http://localhost:4730/todos")
-      .then((response) => response.json())
-      .then((todosFromApi) => {
-        this.todos = todosFromApi;
-      });
+    this.loadData();
   },
   mounted() {
     window.addEventListener("keyup", (event) => {
