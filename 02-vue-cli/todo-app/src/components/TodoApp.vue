@@ -1,67 +1,61 @@
 <template>
-  <main id="app">
-    <article class="input-todo">
-      <form class="text-value">
+  <article class="input-todo">
+    <form class="text-value">
+      <input type="text" id="text-input" placeholder="Let's get this done..." />
+    </form>
+    <button @click="checkForDuplicates" id="add-todo">Add</button>
+  </article>
+  <section class="nodepad">
+    <article id="filter">
+      <header>
+        <h2>Filter Options</h2>
+      </header>
+      <div>
         <input
-          type="text"
-          id="text-input"
-          placeholder="Let's get this done..."
+          @click="filter = 'All'"
+          type="radio"
+          name="radio-button"
+          id="all"
+          checked="checked"
         />
-      </form>
-      <button @click="checkForDuplicates" id="add-todo">Add</button>
+        <label for="all">All</label>
+      </div>
+      <div>
+        <input
+          @click="filter = 'Open'"
+          type="radio"
+          name="radio-button"
+          id="open-todos"
+        />
+        <label for="open-todos">Open</label>
+      </div>
+      <div>
+        <input
+          @click="filter = 'Done'"
+          type="radio"
+          name="radio-button"
+          id="done"
+        />
+        <label for="done">Done</label>
+      </div>
     </article>
-    <section class="nodepad">
-      <article id="filter">
-        <header>
-          <h2>Filter Options</h2>
-        </header>
-        <div>
+    <article class="paper">
+      <ul class="todo-list">
+        <li v-for="(todo, index) of filterChecked" :key="todo.id">
           <input
-            @click="filter = 'All'"
-            type="radio"
-            name="radio-button"
-            id="all"
-            checked="checked"
+            @change="checkboxStatus($event, index)"
+            type="checkbox"
+            id="test"
+            :checked="todo.done"
           />
-          <label for="all">All</label>
-        </div>
-        <div>
-          <input
-            @click="filter = 'Open'"
-            type="radio"
-            name="radio-button"
-            id="open-todos"
-          />
-          <label for="open-todos">Open</label>
-        </div>
-        <div>
-          <input
-            @click="filter = 'Done'"
-            type="radio"
-            name="radio-button"
-            id="done"
-          />
-          <label for="done">Done</label>
-        </div>
-      </article>
-      <article class="paper">
-        <ul class="todo-list">
-          <li v-for="(todo, index) of filterChecked" :key="todo.id">
-            <input
-              @change="checkboxStatus($event, index)"
-              type="checkbox"
-              id="test"
-              :checked="todo.done"
-            />
-            <span :class="{ 'text-deco': todo.done }">{{
-              todo.description
-            }}</span>
-          </li>
-        </ul>
-        <button @click="deleteTodos" id="remove-todos">Remove</button>
-      </article>
-    </section>
-  </main>
+          <span :class="{ 'text-deco': todo.done }">{{
+            todo.description
+          }}</span>
+        </li>
+      </ul>
+      <button @click="deleteTodos" id="remove-todos">Remove</button>
+    </article>
+  </section>
 </template>
 
 <script>

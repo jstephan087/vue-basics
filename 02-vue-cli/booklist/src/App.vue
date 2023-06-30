@@ -1,7 +1,7 @@
 <template>
   <LayoutHeader />
   <main>
-    <div id="app" class="inside">
+    <div class="inside">
       <BookList />
     </div>
   </main>

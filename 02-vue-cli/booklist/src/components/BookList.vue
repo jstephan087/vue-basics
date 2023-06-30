@@ -6,25 +6,32 @@
         <tr>
           <th class="table-item__table-head-name">Name</th>
           <th class="table-item__table-head--isbn">ISBN</th>
+          <th class="th.table-item__table-head--actions"></th>
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="book in books"
+        <BookListRow
+          v-for="(book, index) in books"
           :key="book.isbn"
+          :title="book.title"
+          :isbn="book.isbn"
+          :isBookmarked="book.isBookmarked"
+          @bookmark="bookmarkClick(index)"
           class="table-item__table-row"
-        >
-          <td>{{ book.title }}</td>
-          <td>{{ book.isbn }}</td>
-        </tr>
+        />
       </tbody>
     </table>
   </section>
 </template>
 
 <script>
+import BookListRow from "./BookListRow.vue";
+
 export default {
   name: "BookList",
+  components: {
+    BookListRow,
+  },
   data() {
     return {
       books: [
@@ -35,6 +42,7 @@ export default {
           publisher: "Apress",
           price: "$28.75",
           numPages: 256,
+          isBookmarked: false,
         },
         {
           title: "Using WebPagetest",
@@ -43,6 +51,7 @@ export default {
           publisher: "O'Reilly Media",
           price: "$25.80",
           numPages: 214,
+          isBookmarked: false,
         },
         {
           title: "Web Scraping with Python",
@@ -51,6 +60,7 @@ export default {
           publisher: "O'Reilly Media",
           price: "$14.00",
           numPages: 256,
+          isBookmarked: false,
         },
         {
           title: "High Performance Mobile Web",
@@ -59,9 +69,17 @@ export default {
           publisher: "O'Reilly Media",
           price: "$7.00",
           numPages: 326,
+          isBookmarked: false,
         },
       ],
     };
+  },
+  methods: {
+    bookmarkClick(index) {
+      this.books[index].isBookmarked = !this.books[index].isBookmarked
+        ? true
+        : false;
+    },
   },
 };
 </script>
@@ -99,8 +117,7 @@ export default {
   color: #ffffff;
   text-align: left;
 }
-.table-item__table th,
-.table-item__table td {
+.table-item__table th {
   padding: 12px 15px;
 }
 .table-item__table tbody tr {
